@@ -14,5 +14,5 @@ use security;
 
 3-1. Mustache 설정(WebMvcConfig.java, IndexController)
   - WebMvcConfigurer 구현하여 Mustache 설정
-- IndexController 
-- Index.html 로 화면 출력
+- IndexController 구현하여 view page 리턴
+- Index.html ,리턴 값
