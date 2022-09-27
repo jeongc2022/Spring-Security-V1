@@ -13,6 +13,6 @@ use security;
 3. 화면 구현 (View 설정)
 
   3-1. Mustache 설정(WebMvcConfig.java, IndexController)
-    - WebMvcConfigurer 구현하여 Mustache 설정
-    - IndexController 
-    - Index.html 로 화면 출력
+    -- WebMvcConfigurer 구현하여 Mustache 설정
+    -- IndexController 
+    -- Index.html 로 화면 출력
