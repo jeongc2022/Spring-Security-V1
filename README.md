@@ -9,6 +9,11 @@ use security;
 ```
 ### 2. 환경설정
   - Spring Security 의존성을 설정하면 우리가 사용하는 모든 주소가 바뀌어 인증을 거쳐야 하게 됨
+  
+  ```
+  http://localhost:8081/login
+  http://localhost:8081/logout
+  ```
 
 ### 3. 화면 구현 (View 설정)
 
