@@ -21,3 +21,9 @@ use security;
   - WebMvcConfigurer 구현하여 Mustache 설정
 - IndexController 구현하여 view page 리턴, 각 함수에 @ResponseBody 추가
 - Index.html ,리턴 값
+
+### 4. 스프링 시큐리티 설정
+ - SecurityConfig.java 생성 후 설정
+
+4-1. SecurityConfig 생성 (WebSecurityConfigurerAdapter 상속)
+4-2. 시큐리티 
