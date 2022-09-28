@@ -1,5 +1,11 @@
 # Spring-Security-V1
 
+### Spec
+MySQL, JPA
+Java 11
+STS 4.11.0
+SpringBoot 2.7.4
+
 ### 1. DDL 설정
 ```
 CREATE USER 'cos'@'%' identified by 'cos1234';
@@ -27,4 +33,6 @@ use security;
 
 4-1. SecurityConfig 생성 (WebSecurityConfigurerAdapter 상속)
 4-2. 시큐리티 회원가입
-- Login에 loginForm 화면연동
+- Login에 @ResponseBody제거, loginForm 화면연동
+- 서버 실행시 로긴 Form 출력 확인, 회원가입 없으므로 로그인 불가
+- Model 생성, User (Entity) 생성 후 DB에 보면 User 테이블이 하나 만들어져 있을 것. (확인) 
