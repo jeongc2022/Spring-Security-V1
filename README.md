@@ -26,4 +26,5 @@ use security;
  - SecurityConfig.java 생성 후 설정
 
 4-1. SecurityConfig 생성 (WebSecurityConfigurerAdapter 상속)
-4-2. 시큐리티 
+4-2. 시큐리티 회원가입
+- Login에 loginForm 화면연동
