@@ -19,5 +19,5 @@ use security;
 
 3-1. Mustache 설정(WebMvcConfig.java, IndexController)
   - WebMvcConfigurer 구현하여 Mustache 설정
-- IndexController 구현하여 view page 리턴
+- IndexController 구현하여 view page 리턴, 각 함수에 @ResponseBody 추가
 - Index.html ,리턴 값
