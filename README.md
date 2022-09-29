@@ -43,4 +43,4 @@ desc user;
 - IndexController 수정
 - loginForm.html 생성
 - joinForm.html 생성
-  - joinForm()에서 id, password, email 받아서 join()으로 감
+  - /joinForm에서 id, password, email을 들고 /join으로 감
