@@ -39,3 +39,8 @@ use security;
 ```
 desc user;
 ```
+4-3. 시큐리티 회원가입
+- IndexController 수정
+- loginForm.html 생성
+- joinForm.html 생성
+  - joinForm()에서 id, password, email 받아서 join()으로 감
