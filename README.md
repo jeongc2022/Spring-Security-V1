@@ -77,3 +77,10 @@ Controller에서는 setRole 강제 삽입
 	```
 	- 서버 실행, 회원가입에서 id, password, email을 입력 하고 회원가입버튼을 누르면 로그인 페이지로 이동하는 것을 확인
 	- DB Workbench에서 select * from user;로 id, createDate, password(인코딩 된 상태), role, username가 잘 입력된것 확인 후 로그인 	
+
+4-4. 시큐리티 로그인
+
+
+
+
+4-5. 시큐리티 권한처리
