@@ -80,6 +80,22 @@ Controller에서는 setRole 강제 삽입
 
 4-4. 시큐리티 로그인
 
+- SecurityConfig.java에서 코드 추가
+```
+.loginPage("/loginForm") // /login 이라는 주소가 호출이 되면 시큐리티가 대신 낚아채서 로그인을 진행해준다. (Controlloer에 "/login"을 만들지 않아도 됨)
+.loginProcessingUrl("/login")
+;
+```
+
+- config패키지 안에 auth 패키지 생성, PrincipalDetails 클래스 생성
+	- 일반 Session에 공간은 같은데, security 자신만의 Session에 공간을 갖는다.
+	- 키 Ket값으로 구분하는데, Security ContextHolder 라는 Key값에 Session에 정보를 저장 시킨다.
+	- 시큐리티가 가지고 있는 Session에 Object가 정해져 있다. (Authentication 타입 객체이다.)
+	- Authentication 안에 User정보가 있어야 됨.
+	- User Object의 Type은 UserDetails Type 객체여야 한다.
+	- 쉽게 말해서 Security Session 영역이 있는데, 여기 Session 정보를 정해준다.
+		- 이 안에는 Authentication Object만 들어갈 수 있도록 설계되어 있고, 이 Authentication Object 안에 User 정보를 저장 할때는 User정보는 UserDetails Tyoe이어야 한다. (Security Session에서 꺼낼 때는 역순)
+	
 
 
 
