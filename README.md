@@ -46,3 +46,14 @@ desc user;
   - /joinForm에서 id, password, email을 들고 /join으로 감
 - repository 패키지 생성 -> UserRepository Interface를 만드는데, JpaRepository를 상속함
   - @Repository가 없어도 IoC가 
+
+Controller에서는 setRole 강제 삽입
+```
+@PostMapping("/join")
+	public @ResponseBody String join(User user) {	// 실제로 회원가입 페이지 연결 (id, password, email)
+		System.out.println(user);
+		user.setRole("ROLE_USER");	// user에 setRole이 없어서 강. id는  auto_increatement, createDate는 @CreationTimestamp로 자동으로 만들어짐
+		userRepository.save(user);	// 회원가입 잘됨.
+		return "join"; 
+	}
+```
