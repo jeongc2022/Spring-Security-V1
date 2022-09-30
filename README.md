@@ -97,7 +97,9 @@ Controller에서는 setRole 강제 삽입
 		- 이 안에는 Authentication Object만 들어갈 수 있도록 설계되어 있고,
 		- 이 Authentication Object 안에 User 정보를 저장 할때는 
 		- User정보는 UserDetails Tyoe이어야 한다. 
-		- Security Session에서 꺼낼 때는 역순
+		- Security Session에서 꺼낼 때는 역순이며 UserDetails Object를 꺼내면 User 정보에 접근 할 수 있다. 
+		- (PrincipalDetails가 UserDetails를 Implementation 했기 때문에 같은 type이 되므로 PrincipalDetails 객체를 Authentication 객체에 넣을 수 있다.)
+		- Security Session => Autentication => UserDetails(PrincipalDetails)
 	
 
 
