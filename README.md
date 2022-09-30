@@ -59,4 +59,20 @@ Controller에서는 setRole 강제 삽입
 ```
 
  - SecurityConfig 패스워드 암호화 등록
- 	- BCryptPasswordEncoder 메서드 오버라이드 (Bean 등록)
+ 	- BCryptPasswordEncoder 메서드 오버라이드 (@Bean IoC 등록) -> 어디서든지 사용가능하게 오버라이드 됨
+ 	- BCryptPasswordEncoder를 IndexController에  (@Autowired로 의존성 주입해주어 사용)
+ 	- 암호화 로직
+	```
+	@PostMapping("/join")
+	public @ResponseBody String join(User user) {	// 실제로 회원가입 페이지 연결 (id, password, email)
+		System.out.println(user);
+		user.setRole("ROLE_USER");	// user에 setRole이 없어서 강. id는  auto_increatement, createDate는 @CreationTimestamp때문에 자동으로 만들어짐
+		String rawPassword = user.getPassword();
+		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		
+		userRepository.save(user);	// 회원가입 잘됨. 비밀번호: 1234 => 시큐리티로 로그인 할 수 없음. 이유는 패스워드가 암호화가 안되었기 때문!!
+		return "join"; 
+	}
+	```
+	
