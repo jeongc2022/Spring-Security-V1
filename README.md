@@ -44,3 +44,5 @@ desc user;
 - loginForm.html 생성
 - joinForm.html 생성
   - /joinForm에서 id, password, email을 들고 /join으로 감
+- repository 패키지 생성 -> UserRepository Interface를 만드는데, JpaRepository를 상속함
+  - @Repository가 없어도 IoC가 
