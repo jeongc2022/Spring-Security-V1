@@ -94,7 +94,10 @@ Controller에서는 setRole 강제 삽입
 	- Authentication 안에 User정보가 있어야 됨.
 	- User Object의 Type은 UserDetails Type 객체여야 한다.
 	- 쉽게 말해서 Security Session 영역이 있는데, 여기 Session 정보를 정해준다.
-		- 이 안에는 Authentication Object만 들어갈 수 있도록 설계되어 있고, 이 Authentication Object 안에 User 정보를 저장 할때는 User정보는 UserDetails Tyoe이어야 한다. (Security Session에서 꺼낼 때는 역순)
+		- 이 안에는 Authentication Object만 들어갈 수 있도록 설계되어 있고,
+		- 이 Authentication Object 안에 User 정보를 저장 할때는 
+		- User정보는 UserDetails Tyoe이어야 한다. 
+		- Security Session에서 꺼낼 때는 역순
 	
 
 
