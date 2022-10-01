@@ -105,12 +105,32 @@ Controller에서는 setRole 강제 삽입
 			- https://ch4njun.tistory.com/247	
 			- https://www.geeksforgeeks.org/composition-in-java/
 	- GrantedAuthority 구현(in PrincipalDetails)
-		- ```
+		- 원래 여기서 User의 권한은 user.getRole() 이지만, user.getRole()은 String tpye을 반환하여 사용불가
+	 	```
 		// 해당 User의 권한을 리턴하는 곳!!
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
 			// TODO Auto-generated method stub
 			return null;
+		}
+		```
+		
+		- 따라서 getAuthorities()를 Override 하여 Collection type을 return 하도록 해주고,
+		-  GrantedAutority객체를 요소로 추가하여 getAuthority()에서 String type을 호출할 수 있다.
+
+		```
+		// 해당 User의 권한을 리턴하는 곳!!
+		@Override
+		public Collection<? extends GrantedAuthority> getAuthorities() {
+			Collection<GrantedAuthority> collect = new ArrayList<>();
+			collect.add(new GrantedAuthority() {
+
+				@Override
+				public String getAuthority() {
+					return user.getRole();
+				}
+			});
+			return collect;
 		}
 		```
 		
