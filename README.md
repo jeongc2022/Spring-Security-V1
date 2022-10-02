@@ -82,10 +82,14 @@ Controller에서는 setRole 강제 삽입
 
 - SecurityConfig.java에서 코드 추가
 ```
-.loginPage("/loginForm") // /login 이라는 주소가 호출이 되면 시큐리티가 대신 낚아채서 로그인을 진행해준다. (Controlloer에 "/login"을 만들지 않아도 됨)
-.loginProcessingUrl("/login")
-;
+.loginPage("/loginForm") 
+.loginProcessingUrl("/login") // /login 이라는 주소가 호출이 되면 시큐리티가 대신 낚아채서 로그인을 진행해준다. (Controlloer에 "/login"을 만들지 않아도 됨)
+.defaultSuccessUrl("/");	// main page
 ```
+	- loginForm.html의 form tag에 action attribute 추가
+	```
+	<form action="/login" method="POST">
+	```
 
 - config패키지 안에 auth 패키지 생성, PrincipalDetails 클래스 생성
 	- 일반 Session에 공간은 같은데, security 자신만의 Session에 공간을 갖는다.
@@ -140,8 +144,22 @@ Controller에서는 setRole 강제 삽입
 				Ioc되어 있는 loadUserByUsername 함수가 실행
 			-주의해야 할것은 loadUserByUsername()과 loginForm의 parameter name이 똑같아야 한다.
 			- 아니면 SecurityConfig에 userParameter("")를 이용하면 된다.
-			- 
-			
-
+			- /login 으로 접속하면 UserDetails 타입으로 등록된 객체를 찾고 바로 loadUserByUsername()를 호출한다.(임의 함수 정의)
+				- 해당하는 유저를 찾는 finByUsername()을 구현하고, UserRepository Interface에 추상메서드로 정의한다. 
+				- 	// findBy  규칙 - > Username 문법
+					// select * from user where username = 1?
+					```
+					EX)
+					// select * from user where = ?
+					public User findByEmail();
+					```
+				- service에서 로직 구현
+				- loadUserByUsername()의 내부동작, 순차적으로 내부로 들어옴: 시큐리티 session(내부 Authentication(내부 UserDetails))
+				- JPA Query Method Reference
+				- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods
+				- https://www.baeldung.com/spring-data-derived-queries
+					
+					
+				
 	
 4-5. 시큐리티 권한처리
