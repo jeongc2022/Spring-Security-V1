@@ -133,6 +133,15 @@ Controller에서는 setRole 강제 삽입
 			return collect;
 		}
 		```
-		
+	- UserDetailsService Implements
+		- loadUserByUsername Override
+			- 시큐리티 설정에서 loginProcesingUrl("/login");
+			-  login 요청이 오면 자동으로 UserDetailsService 타입으로
+				Ioc되어 있는 loadUserByUsername 함수가 실행
+			-주의해야 할것은 loadUserByUsername()과 loginForm의 parameter name이 똑같아야 한다.
+			- 아니면 SecurityConfig에 userParameter("")를 이용하면 된다.
+			- 
+			
+
 	
 4-5. 시큐리티 권한처리
