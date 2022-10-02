@@ -160,7 +160,7 @@ Controller에서는 setRole 강제 삽입
 				- https://www.baeldung.com/spring-data-derived-queries
 	- 현재 Security 설정에서 user는 인증만 되면 들어갈 수 있는 주소로 설정되어 있다.
 	-  ```.antMatchers("/user/**").authenticated()		// 인증만 되면 들어갈 수 있는 주소!!```
-	-  아직 이외 주소(ex: manager, admin)은 접속하면 403 forbidden Error가 발생하는데, 인증과 *권한*이 필요하다.
+	-  아직 이외 주소(ex: manager, admin)은 접속하면 403 forbidden Error가 발생하는데, *인증*과 *권한*이 필요하다.
 		- ``` .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANGER')")
 			.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')") ```
 			
