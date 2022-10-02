@@ -159,7 +159,8 @@ Controller에서는 setRole 강제 삽입
 				- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods
 				- https://www.baeldung.com/spring-data-derived-queries
 					
-					
+	-  ```.antMatchers("/user/**").authenticated()		// 인증만 되면 들어갈 수 있는 주소!!```
+
 				
 	
 4-5. 시큐리티 권한처리
