@@ -161,7 +161,7 @@ Controller에서는 setRole 강제 삽입
 	- 현재 Security 설정에서 user는 인증만 되면 들어갈 수 있는 주소로 설정되어 있다.
 	-  ```.antMatchers("/user/**").authenticated()		// 인증만 되면 들어갈 수 있는 주소!!```
 	-  아직 이외 주소(ex: manager, admin)은 접속하면 403 forbidden Error가 발생하는데, *인증*과 *권한*이 필요하다.
-		- ``` .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANGER')")
+		- ``` .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
 			.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')") ```
 			
 
@@ -188,3 +188,26 @@ Controller에서는 setRole 강제 삽입
 		return "개인정보";
 	}
 	```
+	- SecurityConfig에서 ```@EnableGlobalMethodSecurity에 prePostEnabled = true 속성 추가	// preAuthorize 어노테이션 활성화```
+	```
+	@Configuration
+	@EnableWebSecurity	// 스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록이 됩니다.
+	@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)	// secured 어노테이션 활성화, preAuthorize 어노테이션 활성화
+	public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	....
+	}
+	```
+		- IndexController에 data() 추가
+		```
+		@PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")	// @secured와 다르게 여러개의 권한을 부여할 수 있음
+		@GetMapping("/data")
+		public @ResponseBody String data() {
+			return "데이터정보";
+		}
+		```prePostEnabled = true
+		- @PreAuthorize는 data()가 실행 되기 이전에 먼저 실행된다. 이 외에 data()가 끝난 뒤에 실행되는 @postAuthorized도 있다.
+		- @EnableGlobalMethodSecurity의 prePostEnabled = ture 속성은 @PreAuhorize와 @postAuthorize 두가지를 활성화 시켜주며, 가장 최근에 나온 @secured를 많이 사용함
+	 ``` @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)	// secured 어노테이션 활성화, preAuthorize, postAuthorize 어노테이션 활성화 ```
+	
+	- SecureConfig에서 Post
+		
