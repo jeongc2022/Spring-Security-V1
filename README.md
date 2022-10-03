@@ -172,9 +172,19 @@ Controller에서는 setRole 강제 삽입
 	- ```UPDATE user SET role = 'ROLE_MANAGER' WHERE id = 2; UPDATE user SET role = 'ROLE_ADMIN' WHERE id = 3; COMMIT;```
 	- 권한이 바껴 있는것을 확인하고, manager계정으로 /admin 접속은 권한이 없으므로 403 Forbidden 에러 방생
 	- admin에서 /manager 접속은 권한이 있으므로 접속 가능
-- SecurityConfig에서  ```@EnableGlobalMethodSecurity(securedEnabled = true)``` 추가
-	- IndexController에서 ``` @Secured("ROLE_ADMIN")
+- SecurityConfig에서 어노테이션으로 간단하게 권한 설정을 하기위해 ```@EnableGlobalMethodSecurity(securedEnabled = true) // secured 어노테이션 활성화``` 추가
+	- IndexController에서 info() 추가하면 /info에 누구나 가지는데
+	``` 	
 	@GetMapping("/info")
 	public @ResponseBody String info() {
 		return "개인정보";
-	}``` 
+		}
+	``` 
+	- @secured 사용하여 특정 method에 특정 권한 설정(간단)
+	```
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/info")
+	public @ResponseBody String info() {
+		return "개인정보";
+	}
+	```
