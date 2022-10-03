@@ -1,4 +1,4 @@
-# Spring-Security-V1
+# Springboot-Security-Basic-V1
 
 ### Spec
 MySQL, JPA
