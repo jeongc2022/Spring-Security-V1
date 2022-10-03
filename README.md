@@ -169,8 +169,8 @@ Controller에서는 setRole 강제 삽입
 	
 4-5. 시큐리티 권한처리
 - manager, admin 계정 생성, 후 권한 setting
-```
+	- ```
 	UPDATE user SET role = 'ROLE_MANAGER' WHERE id = 2;
 	UPDATE user SET role = 'ROLE_ADMIN' WHERE id = 3;
 	COMMIT;
-```
+		```
