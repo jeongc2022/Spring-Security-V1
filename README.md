@@ -208,6 +208,4 @@ Controller에서는 setRole 강제 삽입
 		- @PreAuthorize는 data()가 실행 되기 이전에 먼저 실행된다. 이 외에 data()가 끝난 뒤에 실행되는 @postAuthorized도 있다.
 		- @EnableGlobalMethodSecurity의 prePostEnabled = ture 속성은 @PreAuhorize와 @postAuthorize 두가지를 활성화 시켜주며, 가장 최근에 나온 @secured를 많이 사용함
 	 ``` @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)	// secured 어노테이션 활성화, preAuthorize, postAuthorize 어노테이션 활성화 ```
-	
-	- SecureConfig에서 Post
-		
+			
