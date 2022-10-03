@@ -172,5 +172,5 @@ Controller에서는 setRole 강제 삽입
 	- ```
 	UPDATE user SET role = 'ROLE_MANAGER' WHERE id = 2;
 	UPDATE user SET role = 'ROLE_ADMIN' WHERE id = 3;
-	COMMIT;
-		```
+	COMMIT;	
+	```
