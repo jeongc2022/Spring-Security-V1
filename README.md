@@ -209,3 +209,36 @@ Controller에서는 setRole 강제 삽입
 		- @EnableGlobalMethodSecurity의 prePostEnabled = ture 속성은 @PreAuhorize와 @postAuthorize 두가지를 활성화 시켜주며, 가장 최근에 나온 @secured를 많이 사용함
 	 ``` @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)	// secured 어노테이션 활성화, preAuthorize, postAuthorize 어노테이션 활성화 ```
 			
+-  registrationId로 어떤 OAuth로 로그인 했는지 확인 가능
+ ```System.out.println("getClientRegistration : " + userRequest.getClientRegistration()); // registrationId로 어떤 OAuth로 로그인 했는지 확인 가능```
+	- super.loadUser(userRequest)의 역할
+		- 우리가 제일 처음에 구글 로그인 버튼을 하면 구글 로그인 창이 뜨고 여기서 로그인 완료를 하면, 
+		- OAuth-Client 라이브러리가 code를 리턴 받아준다. 그리고 그 Code를 통해서 AccessToken을 요청한다.
+		- 그러면 그 AccessToken을 받는데 여기까지 과정이 userRequest정보이다.
+		- 그리고 Google로 부터 그 UserRequest정보로 회원 프로필을 받아야 하는데 그때 호출하는 함수가 loadUser()
+	- PrincipalOauth2UserService에서 ```OAuth2User oAuth2User = super.loadUser(userRequest);``` 추가
+```
+	
+@Service
+public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
+	
+	// 구글로 부터 받은 userRequest 데이터에 대한 후 처리가 되는 함수
+	@Override
+	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+		System.out.println("userRequest : " + userRequest);
+		System.out.println("getClientRegistration : " + userRequest.getClientRegistration()); // registrationId로 어떤 OAuth로 로그인 했는지 확인 가능
+		System.out.println("getAccessToken : " + userRequest.getAccessToken());
+		System.out.println("getTokenValue : " + userRequest.getAccessToken().getTokenValue());
+		// 구글로그인 버튼 클릭 -> 구글로그인창 -> 로그인완료 -> code를 리턴(OAuth-Client라이브러리) -> AccessToken요청
+		// userRequest 정보 -> loadUser함수 호출 -> 구글로 부터 회원 프로필 받아준다.
+		System.out.println("getAttributes : " + super.loadUser(userRequest).getAttributes());
+
+		OAuth2User oAuth2User = super.loadUser(userRequest);
+		// 회원가입을 강제로 진행해볼 예정
+		return super.loadUser(userRequest);
+	}
+}
+	
+```
+	
+	- IndexController에서 
